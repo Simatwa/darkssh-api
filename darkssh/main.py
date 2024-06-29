@@ -45,12 +45,12 @@ class SSH:
             "Japan",
             "Sweden",
             "Italy",
-        ] = "Singapore",
+        ] = "United Kingdom",
     ):
         """Constructor
 
         Args:
-            country : Server location. Defaults to "Singapore".
+            country : Server location. Defaults to "United Kingdom".
         """
         assert (
             country in country_codes_map
