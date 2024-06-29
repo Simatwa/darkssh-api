@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
+  <title>
+   DarkSSH - Create Free SSH Account for SSH SSL US Server
+  </title>
+  <link href="http://darkssh.com/images/1648793834_favicon_darkssh.png" rel="icon" type="image/x-icon"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="http://darkssh.com/themes/plugins/flag-icon/css/flag-icon.min.css" rel="stylesheet"/>
+  <link href="http://darkssh.com/assets/css/app.css?id=6754b3a5f094e7d5f787da96f55e3d3a" rel="stylesheet"/>
+  <link href="http://darkssh.com/assets/css/custom.css" rel="stylesheet"/>
+  <meta content="Darkssh server, Free SSH and VPN accounts, SSH Tunnel, OpenVPN, V2ray Server, TrojanVPN, Shadowsocks, WireGuard, Secure internet browsing, Darkssh for free " name="description"/>
+  <meta content="ssh account, ssh ssl account, free ssh, v2ray server, ssh udp, ssh websocket, v2ray account" name="keywords"/>
+  <link href="http://darkssh.com" hreflang="x-default" rel="alternate"/>
+  <meta content="ZYn-kuiRS0HjRvOmreRZMhO3drmV4t6BAUGr3-I93Gk" name="google-site-verification"/>
+  <meta content="Indonesia" name="geo.placename"/>
+  <meta content="Administrator" name="Author"/>
+  <meta content="general" name="rating"/>
+  <meta content="id" name="geo.country"/>
+  <!-- [ Social Media meta tag ] -->
+  <meta content="DarkSSH - Create Free SSH Account for SSH SSL US Server" property="og:title"/>
+  <meta content="website" property="og:type"/>
+  <meta content="http://darkssh.com/server/SSH/413" property="og:url"/>
+  <meta content="Darkssh server, Free SSH and VPN accounts, SSH Tunnel, OpenVPN, V2ray Server, TrojanVPN, Shadowsocks, WireGuard, Secure internet browsing, Darkssh for free " property="og:description"/>
+  <meta content="DarkSSH" property="og:site_name"/>
+  <meta content="en_US" property="og:locale"/>
+  <meta content="en_GB" property="og:locale:alternate"/>
+  <meta content="id_ID" property="og:locale:alternate"/>
+  <script async="" data-ad-client="ca-pub-2683295470677090" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+  </script>
+  <script defer="" src="http://darkssh.com/assets/js/app.js?id=346467b23c2587458e0d465da4df850a">
+  </script>
+ </head>
+ <body class="font-sans leading-normal text-standard-origin bg-body mx-6">
+  <header class="header pt-8">
+   <div class="container max-w-screen-xl mx-auto">
+    <div class="flex flex-wrap justify-between" x-data="{ navOpen: false }">
+     <a class="inline-block self-center" href="http://darkssh.com">
+      <img alt="Logo" class="w-48" src="http://darkssh.com/images/1648565419_logo.svg"/>
+     </a>
+     <button class="inline-flex lg:hidden w-8 h-6 flex-col justify-between self-center" x-on:click.prevent="navOpen = !navOpen">
+      <span :class="{ 'rotate-45 !top-[12px]': navOpen }" class="block w-full h-0.5 rounded-md bg-gray-200 relative top-0 duration-200">
+      </span>
+      <span :class="{ 'opacity-0': navOpen }" class="block w-full h-0.5 rounded-md bg-gray-200 duration-100">
+      </span>
+      <span :class="{ '-rotate-45 !-top-[10px]': navOpen }" class="block w-full h-0.5 rounded-md bg-gray-200 relative -top-0 duration-200">
+      </span>
+     </button>
+     <nav class="lg:!flex py-4 mt-4 lg:py-0 lg:mt-0 rounded lg:bg-transparent bg-secondary bg-opacity-30 w-full lg:w-auto items-center" x-on:click.away="navOpen = false" x-show="navOpen" x-transition="">
+      <div class="mx-4">
+       <a class="lg:w-auto w-full inline-block font-medium text-lg text-gray-200" href="http://darkssh.com">
+        Home
+       </a>
+      </div>
+      <div class="mx-4 py-2 lg:py-0 relative" x-data="dropdown" x-on:focusin.window="! $refs.panel.contains($event.target) &amp;&amp; close()" x-on:keydown.escape.prevent.stop="close($refs.button)">
+       <button class="lg:w-auto w-full font-medium text-lg flex items-center text-white" type="button" x-on:click="toggle()" x-ref="button">
+        SSH &amp; OVPN
+        <svg class="ml-2" fill="none" height="12" width="12" xmlns="http://www.w3.org/2000/svg">
+         <path d="M6 10a.996.996 0 0 1-.707-.293l-5-5a1 1 0 1 1 1.414-1.414L6 7.587l4.294-4.293a1 1 0 1 1 1.414 1.414l-5 5A.997.997 0 0 1 6 10Z" fill="#E4E4E4">
+         </path>
+        </svg>
+       </button>
+       <div class="lg:absolute lg:w-48 w-full z-10 bg-white text-gray-600 py-2 top-auto mt-4 rounded" style="display: none;" x-on:click.outside="close($refs.button)" x-ref="panel" x-show="open" x-transition.origin.top.left="">
+        <a class="block px-3 py-2 hover:bg-gray-200" href="http://darkssh.com/server/SSH">
+         SSH Server
+        </a>
+        <a class="block px-3 py-2 hover:bg-gray-200" href="http://darkssh.com/server/UDP">
+         SSH UDP
+        </a>
+        <a class="block px-3 py-2 hover:bg-gray-200" href="http://darkssh.com/server/Slowdns">
+         SSH SlowDNS
+        </a>
+        <a class="block px-3 py-2 hover:bg-gray-200" href="http://darkssh.com/server/OpenVPN">
+         OpenVPN
+        </a>
+       </div>
+      </div>
+      <div class="mx-4 py-2 lg:py-0 relative" x-data="dropdown" x-on:focusin.window="! $refs.panel.contains($event.target) &amp;&amp; close()" x-on:keydown.escape.prevent.stop="close($refs.button)">
+       <button class="lg:w-auto w-full font-medium text-lg flex items-center text-white" type="button" x-on:click="toggle()" x-ref="button">
+        V2Ray &amp; Xray
+        <svg class="ml-2" fill="none" height="12" width="12" xmlns="http://www.w3.org/2000/svg">
+         <path d="M6 10a.996.996 0 0 1-.707-.293l-5-5a1 1 0 1 1 1.414-1.414L6 7.587l4.294-4.293a1 1 0 1 1 1.414 1.414l-5 5A.997.997 0 0 1 6 10Z" fill="#E4E4E4">
+         </path>
+        </svg>
+       </button>
+       <div class="lg:absolute lg:w-48 w-full z-10 bg-white text-gray-600 py-2 top-auto mt-4 rounded" style="display: none;" x-on:click.outside="close($refs.button)" x-ref="panel" x-show="open" x-transition.origin.top.left="">
+        <a class="block px-3 py-2 hover:bg-gray-200" href="http://darkssh.com/server/V2Ray">
+         V2Ray Vmess
+        </a>
+        <a class="block px-3 py-2 hover:bg-gray-200" href="http://darkssh.com/server/Xray">
+         Xray Vless
+        </a>
+       </div>
+      </div>
+      <div class="mx-4">
+       <a class="lg:w-auto w-full inline-block font-medium text-lg text-gray-200" href="http://darkssh.com/server/Shadowsocks">
+        ShadowSocks
+       </a>
+      </div>
+      <div class="mx-4 py-2 lg:py-0 relative" x-data="dropdown" x-on:focusin.window="! $refs.panel.contains($event.target) &amp;&amp; close()" x-on:keydown.escape.prevent.stop="close($refs.button)">
+       <button class="lg:w-auto w-full font-medium text-lg flex items-center text-gray-200" type="button" x-on:click="toggle()" x-ref="button">
+        Tools
+        <svg class="ml-2" fill="none" height="12" width="12" xmlns="http://www.w3.org/2000/svg">
+         <path d="M6 10a.996.996 0 0 1-.707-.293l-5-5a1 1 0 1 1 1.414-1.414L6 7.587l4.294-4.293a1 1 0 1 1 1.414 1.414l-5 5A.997.997 0 0 1 6 10Z" fill="#E4E4E4">
+         </path>
+        </svg>
+       </button>
+       <div class="lg:absolute lg:w-40 w-full z-10 bg-white text-gray-600 py-2 top-auto mt-4 rounded" style="display: none;" x-on:click.outside="close($refs.button)" x-ref="panel" x-show="open" x-transition.origin.top.left="">
+        <a class="block px-3 py-2 hover:bg-gray-200" href="http://darkssh.com/page/host-to-ip">
+         Host to
+                                IP
+        </a>
+        <a class="block px-3 py-2 hover:bg-gray-200" href="http://ping.eu/ping/">
+         Ping
+        </a>
+        <a class="block px-3 py-2 hover:bg-gray-200" href="http://ping.eu/proxy/">
+         Proxy Check
+        </a>
+       </div>
+      </div>
+      <div class="mx-4 py-2 lg:py-0 relative" x-data="dropdown" x-on:focusin.window="! $refs.panel.contains($event.target) &amp;&amp; close()" x-on:keydown.escape.prevent.stop="close($refs.button)">
+       <button class="lg:w-auto w-full font-medium text-lg flex items-center text-gray-200" type="button" x-on:click="toggle()" x-ref="button">
+        Pages
+        <svg class="ml-2" fill="none" height="12" width="12" xmlns="http://www.w3.org/2000/svg">
+         <path d="M6 10a.996.996 0 0 1-.707-.293l-5-5a1 1 0 1 1 1.414-1.414L6 7.587l4.294-4.293a1 1 0 1 1 1.414 1.414l-5 5A.997.997 0 0 1 6 10Z" fill="#E4E4E4">
+         </path>
+        </svg>
+       </button>
+       <div class="lg:absolute lg:w-40 w-full z-10 bg-white text-gray-600 py-2 top-auto mt-4 rounded" style="display: none;" x-on:click.outside="close($refs.button)" x-ref="panel" x-show="open" x-transition.origin.top.left="">
+        <a class="block px-3 py-2 hover:bg-gray-200" href="http://darkssh.com/page/about">
+         About
+        </a>
+        <a class="block px-3 py-2 hover:bg-gray-200" href="http://darkssh.com/page/contact">
+         Contact Us
+        </a>
+        <a class="block px-3 py-2 hover:bg-gray-200" href="http://darkssh.com/page/disclaimer">
+         Disclaimer
+        </a>
+        <a class="block px-3 py-2 hover:bg-gray-200" href="http://darkssh.com/page/term-of-service">
+         Terms of Service
+        </a>
+       </div>
+      </div>
+      <div class="ml-4 mt-2 lg:mt-0 lg:mr-0 mr-4">
+       <a class="lg:w-auto w-full bg-primary-normal hover:bg-primary-dark font-semibold text-white h-13 py-2 px-4 inline-flex items-center justify-center shadow-sm rounded transition-colors duration-150" href="http://darkssh.com#serverType">
+        Create
+                            Now
+       </a>
+      </div>
+     </nav>
+    </div>
+   </div>
+  </header>
+  <div class="container max-w-screen-xl mx-auto pt-20">
+   <div class="text-gray-200 text-center">
+    <h2 class="text-3.5xl text-center font-bold mb-6 wow animate__fadeInUp" data-wow-duration="0.3s">
+     Create SSH Tunneling Account
+    </h2>
+    <h4 class="font-bold uppercase text-gray-200 my-3">
+     "SSH SSL US"
+    </h4>
+    <div class="h-1 bg-gray-200 rounded-md w-10 mx-auto mb-8">
+    </div>
+    <div class="flex justify-center mb-8">
+     <script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+     </script>
+     <!-- wahyus -->
+     <ins class="adsbygoogle" data-ad-client="ca-pub-2683295470677090" data-ad-format="auto" data-ad-slot="2877006766" style="display:block;max-width:970px;width:100%;margin:0 auto;">
+     </ins>
+     <script>
+      (adsbygoogle = window.adsbygoogle || []).push({});
+     </script>
+    </div>
+    <p class="max-w-2xl text-center mx-auto mb-8 wow animate__fadeInUp" data-wow-delay="0.2s" data-wow-duration="0.2s">
+     Now you can create tunneling account through form we provides in the bottom. Use that tunneling account
+                wisely because our server and your account will be life long time as long as used wisely.
+    </p>
+   </div>
+   <div class="container max-w-screen-xl mx-auto py-13">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+     <div class="bg-primary-normal bg-opacity-12 p-8 rounded-xl text-gray-200 wow animate__fadeInUp" data-wow-duration="0.2s">
+      <div class="w-18 h-18 overflow-hidden">
+       <img alt="icon-undetectable.svg" class="w-full" src="http://darkssh.com/images/icon-undetectable.svg"/>
+      </div>
+      <h3 class="font-bold text-lg my-4">
+       Keep Undetectable
+      </h3>
+      <p>
+       Don't let anyone know your life while using internet. Keep self secure and undetectable.
+      </p>
+     </div>
+     <div class="bg-primary-normal bg-opacity-12 p-8 rounded-xl text-gray-200 wow animate__fadeInUp" data-wow-delay="0.1s" data-wow-duration="0.2s">
+      <div class="w-18 h-18 overflow-hidden">
+       <img alt="icon-stable-signal.svg" class="w-full" src="http://darkssh.com/images/icon-stable-signal.svg"/>
+      </div>
+      <h3 class="font-bold text-lg my-4">
+       Stable Server
+      </h3>
+      <p>
+       Our service using strong server with 99.99% uptime. Feel more safety.
+      </p>
+     </div>
+     <div class="bg-primary-normal bg-opacity-12 p-8 rounded-xl text-gray-200 wow animate__fadeInUp" data-wow-delay="0.2s" data-wow-duration="0.2s">
+      <div class="w-18 h-18 overflow-hidden">
+       <img alt="icon-acceleration.svg" class="w-full" src="http://darkssh.com/images/icon-acceleration.svg"/>
+      </div>
+      <h3 class="font-bold text-lg my-4">
+       Strong Acceleration
+      </h3>
+      <p>
+       Our tunneling server at least have 1GBps I/O Port and unmetered bandwidth usage.
+      </p>
+     </div>
+     <div class="bg-primary-normal bg-opacity-12 p-8 rounded-xl text-gray-200 wow animate__fadeInUp" data-wow-delay="0.3s" data-wow-duration="0.2s">
+      <div class="w-18 h-18 overflow-hidden">
+       <img alt="icon-geo-unrestricted.svg" class="w-full" src="http://darkssh.com/images/icon-geo-unrestricted.svg"/>
+      </div>
+      <h3 class="font-bold text-lg my-4">
+       Unlock Geo-Restriction
+      </h3>
+      <p>
+       Browse everywhere anytime without limitation to visiting any sites around the world.
+      </p>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="container max-w-screen-md mx-auto py-8 post post-p:text-gray-200 post-headings:text-gray-200 post-a:text-primary-normal text-gray-200 post-strong:text-gray-200">
+   <p>
+    Create
+    <strong>
+     ssh
+    </strong>
+    and
+    <strong>
+     vpn
+    </strong>
+    free account only at darkssh. darkssh provide free VPN SSH and use a reliable server. Each server is set up in such a way so to be able to accommodate the large number of users every day. How to create SSH and VPN account at darkssh is very easy, you simply enter your username and password then input the captcha correctly then congratulations your account successfully created. don't forget to visit darkssh to get your account continue to
+    <em>
+     SSH
+    </em>
+    and
+    <em>
+     VPN
+    </em>
+    updates every day
+   </p>
+   <p>
+    <span class="_3oh- _58nk">
+     Each
+     <strong>
+      darkssh
+     </strong>
+     account valid for 3-7- 30 days only. Your account is only allowed used two multi bitvise. Any other else, your connection will be disconnected automatically from the server.
+     <em>
+      darkssh
+     </em>
+     allows you to use your own username as part of your account with the following format, your username-darkssh which make you remember your account easily. How to fill our registration form? First, fill username. Your username must consist of 3-10 characters. You can’t fill it with number or any other characters, except words. Second, fill password form. Your passwords have to consist of more than 5 characters. You can fill it with words or numbers. Last, you have to fill the captcha. Fill it precisely, as shown on your monitor. Then, clicks create. And your accounts are ready to use.
+    </span>
+   </p>
+   <div class="flex justify-center mt-8">
+    <script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+    </script>
+    <!-- wahyus -->
+    <ins class="adsbygoogle" data-ad-client="ca-pub-2683295470677090" data-ad-format="auto" data-ad-slot="2877006766" style="display:block;max-width:970px;width:100%;margin:0 auto;">
+    </ins>
+    <script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+   </div>
+  </div>
+  <div class="container max-w-screen-xl py-13 mx-auto border-y border-white border-opacity-10 text-gray-200">
+   <h2 class="text-3.5xl font-bold mb-8 text-center wow animate__fadeInUp" data-wow-duration="0.3s">
+    Create Account Form
+   </h2>
+   <div class="mb-6 grid md:grid-cols-2 gap-x-8 gap-y-4 justify-center md:max-w-md mx-auto">
+    <div class="flex items-center my-1">
+     <svg class="mr-2 fill-green-500" fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+      <path clip-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm4.768 9.14a1.001 1.001 0 1 0-1.536-1.28l-4.3 5.159-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1.002 1.002 0 0 0 1.475-.067l5-6Z" fill-rule="evenodd">
+      </path>
+     </svg>
+     <div>
+      <strong>
+       IP :
+      </strong>
+      a.us.servergo.pw
+     </div>
+    </div>
+    <div class="flex items-center my-1">
+     <svg class="mr-2 fill-green-500" fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+      <path clip-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm4.768 9.14a1.001 1.001 0 1 0-1.536-1.28l-4.3 5.159-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1.002 1.002 0 0 0 1.475-.067l5-6Z" fill-rule="evenodd">
+      </path>
+     </svg>
+     <div>
+      <strong>
+       Speed :
+      </strong>
+      1 GBps
+     </div>
+    </div>
+    <div class="flex items-center my-1">
+     <svg class="mr-2 fill-green-500" fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+      <path clip-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm4.768 9.14a1.001 1.001 0 1 0-1.536-1.28l-4.3 5.159-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1.002 1.002 0 0 0 1.475-.067l5-6Z" fill-rule="evenodd">
+      </path>
+     </svg>
+     <div>
+      <strong>
+       Dropbear :
+      </strong>
+      80, 443
+     </div>
+    </div>
+    <div class="flex items-center my-1">
+     <svg class="mr-2 fill-green-500" fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+      <path clip-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm4.768 9.14a1.001 1.001 0 1 0-1.536-1.28l-4.3 5.159-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1.002 1.002 0 0 0 1.475-.067l5-6Z" fill-rule="evenodd">
+      </path>
+     </svg>
+     <div>
+      <strong>
+       OpenSSH :
+      </strong>
+      22, 4 44
+     </div>
+    </div>
+    <div class="flex items-center my-1">
+     <svg class="mr-2 fill-green-500" fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+      <path clip-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm4.768 9.14a1.001 1.001 0 1 0-1.536-1.28l-4.3 5.159-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1.002 1.002 0 0 0 1.475-.067l5-6Z" fill-rule="evenodd">
+      </path>
+     </svg>
+     <div>
+      <strong>
+       SSL Port :
+      </strong>
+      80, 443
+     </div>
+    </div>
+    <div class="flex items-center my-1">
+     <svg class="mr-2 fill-green-500" fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+      <path clip-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm4.768 9.14a1.001 1.001 0 1 0-1.536-1.28l-4.3 5.159-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1.002 1.002 0 0 0 1.475-.067l5-6Z" fill-rule="evenodd">
+      </path>
+     </svg>
+     <div>
+      <strong>
+       Squid :
+      </strong>
+      8080, 1080
+     </div>
+    </div>
+    <div class="flex items-center my-1">
+     <svg class="mr-2 fill-green-500" fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+      <path clip-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm4.768 9.14a1.001 1.001 0 1 0-1.536-1.28l-4.3 5.159-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1.002 1.002 0 0 0 1.475-.067l5-6Z" fill-rule="evenodd">
+      </path>
+     </svg>
+     <div>
+      <strong>
+       Bandwidth :
+      </strong>
+      Unmetered
+     </div>
+    </div>
+    <div class="flex items-center my-1">
+     <svg class="mr-2 fill-green-500" fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+      <path clip-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm4.768 9.14a1.001 1.001 0 1 0-1.536-1.28l-4.3 5.159-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1.002 1.002 0 0 0 1.475-.067l5-6Z" fill-rule="evenodd">
+      </path>
+     </svg>
+     <div>
+      <strong>
+       Active :
+      </strong>
+      30 Days
+     </div>
+    </div>
+   </div>
+   <div x-data="createAccount('http://darkssh.com/server/SSH/413', 'FnkVDkrbr6MujxEMtQhHbfWzjP1Ge7RRdA6IKNWm')">
+    <form class="max-w-2xl mx-auto" x-data="modal(false, 300)" x-on:show="show" x-ref="form">
+     <p class="text-lg mb-8 text-center wow animate__fadeInUp" data-wow-delay="0.2s" data-wow-duration="0.3s">
+      By Filling this form you can create the account. The created account will be appeared at the bottom of
+                    the form.
+     </p>
+     <div class="text-left mb-4">
+      <label :class="{
+                                'text-red-500': errors.username
+                            }" class="font-semibold mb-2 inline-block" for="">
+       Username
+      </label>
+      <input :class="{
+                                '!bg-red-500 !border-red-500 !bg-opacity-5': errors.username
+                            }" class="w-full rounded bg-white bg-opacity-5 outline-none h-13 px-4 border border-white transition-all duration-200 border-opacity-12 focus:border-opacity-100" name="username" placeholder="Username" type="text" x-model="username"/>
+      <template x-if="errors.username">
+       <span class="text-red-500" x-text="errors.username">
+       </span>
+      </template>
+     </div>
+     <div class="text-left mb-4">
+      <label :class="{
+                                'text-red-500': errors.password
+                            }" class="font-semibold mb-2 inline-block" for="">
+       Password
+      </label>
+      <input :class="{
+                                '!bg-red-500 !border-red-500 !bg-opacity-5': errors.password
+                            }" class="w-full rounded bg-white bg-opacity-5 outline-none h-13 px-4 border border-white transition-all duration-200 border-opacity-12 focus:border-opacity-100" name="password" placeholder="Password" type="text" x-model="password"/>
+      <template x-if="errors.password">
+       <span class="text-red-500" x-text="errors.password">
+       </span>
+      </template>
+     </div>
+     <div class="text-left mb-4">
+      <div class="flex sm:flex-row flex-col gap-4">
+       <div class="flex-1">
+        <label :class="{
+                                    'text-red-500': errors.captcha
+                                }" class="font-semibold mb-2 inline-block">
+         Captcha
+        </label>
+        <input :class="{
+                                    '!bg-red-500 !border-red-500 !bg-opacity-5': errors.captcha
+                                }" class="w-full rounded bg-white bg-opacity-5 outline-none h-13 px-4 border border-white transition-all duration-200 border-opacity-12 focus:border-opacity-100" name="captcha" placeholder="Captcha" type="text" x-model="captcha"/>
+       </div>
+       <img alt="captcha" class="h-13 sm:self-end max-w-fit rounded" src="http://darkssh.com/captcha/default?mDeCPjCw" x-ref="imgCaptcha"/>
+      </div>
+      <template x-if="errors.captcha">
+       <span class="text-red-500" x-text="errors.captcha">
+       </span>
+      </template>
+     </div>
+     <template x-if="flash.error">
+      <div class="bg-red-500 bg-opacity-25 border border-red-500 text-red-300 p-4 rounded" x-text="flash.error">
+      </div>
+     </template>
+     <div class="text-center mt-6">
+      <button class="sm:w-auto w-full mb-6 px-10 bg-primary-normal hover:bg-primary-dark font-semibold text-white h-13 py-2 inline-flex items-center justify-center shadow-sm rounded transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50 wow animate__fadeInUp" data-wow-delay="0.3s" data-wow-duration="0.3s" type="button" x-bind:disabled="processing" x-on:click.prevent="submit">
+       Create Account
+      </button>
+      <p>
+       Please read
+       <strong>
+        <a href="http://darkssh.com/page/term-of-service" target="_blank" title="Terms of Use">
+         Terms of Use
+        </a>
+       </strong>
+       first before using the account
+      </p>
+     </div>
+     <template x-teleport="body">
+      <div class="fixed bg-secondary bg-opacity-70 inset-0 z-[100]" style="display: none;" x-on:click="hide" x-show="open" x-transition.opacity.duration.300ms="">
+       <div class="absolute inset-0 h-screen px-6 overflow-y-auto flex items-center justify-center">
+        <div class="bg-white rounded-lg max-w-screen-sm w-full" style="display:none;" x-on:click.stop="" x-show="open" x-transition.duration.300ms="" x-transition:enter.delay.200ms="">
+         <div class="px-8 py-6 border-b border-gray-200">
+          <h2 class="text-gray-700 font-bold text-lg">
+           Created Account Information
+          </h2>
+         </div>
+         <template x-if="created">
+          <div class="px-8 py-6 text-gray-600 max-h-80 overflow-y-auto" style="min-height: 40vw;">
+           <p>
+            Congratulation! your account successfully created by DarkSSH system. Here is the
+                                            information about your created account, use it wisely.
+           </p>
+           <ul class="text-primary-normal my-4">
+            <li>
+             <strong>
+              Username :
+             </strong>
+             <span x-text="created.username">
+             </span>
+            </li>
+            <li>
+             <strong>
+              Expired At :
+             </strong>
+             <span x-text="created.exp">
+             </span>
+            </li>
+            <li>
+             <strong>
+              Password :
+             </strong>
+             <span x-text="created.password">
+             </span>
+            </li>
+           </ul>
+           <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1 justify-center max-w-md">
+            <div class="flex items-center">
+             <svg class="mr-2 fill-green-500" fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+              <path clip-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm4.768 9.14a1.001 1.001 0 1 0-1.536-1.28l-4.3 5.159-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1.002 1.002 0 0 0 1.475-.067l5-6Z" fill-rule="evenodd">
+              </path>
+             </svg>
+             <div>
+              <strong>
+               IP :
+              </strong>
+              <span x-text="created.ip">
+              </span>
+             </div>
+            </div>
+            <div class="flex items-center">
+             <svg class="mr-2 fill-green-500" fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+              <path clip-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm4.768 9.14a1.001 1.001 0 1 0-1.536-1.28l-4.3 5.159-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1.002 1.002 0 0 0 1.475-.067l5-6Z" fill-rule="evenodd">
+              </path>
+             </svg>
+             <div>
+              <strong>
+               Dropbear :
+              </strong>
+              <span x-text="created.dp">
+              </span>
+             </div>
+            </div>
+            <div class="flex items-center">
+             <svg class="mr-2 fill-green-500" fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+              <path clip-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm4.768 9.14a1.001 1.001 0 1 0-1.536-1.28l-4.3 5.159-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1.002 1.002 0 0 0 1.475-.067l5-6Z" fill-rule="evenodd">
+              </path>
+             </svg>
+             <div>
+              <strong>
+               OpenSSH :
+              </strong>
+              <span x-text="created.op">
+              </span>
+             </div>
+            </div>
+            <div class="flex items-center my-1">
+             <svg class="mr-2 fill-green-500" fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+              <path clip-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm4.768 9.14a1.001 1.001 0 1 0-1.536-1.28l-4.3 5.159-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1.002 1.002 0 0 0 1.475-.067l5-6Z" fill-rule="evenodd">
+              </path>
+             </svg>
+             <div>
+              <strong>
+               SSL Port :
+              </strong>
+              <span x-text="created.ssl">
+              </span>
+             </div>
+            </div>
+            <div class="flex items-center">
+             <svg class="mr-2 fill-green-500" fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+              <path clip-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm4.768 9.14a1.001 1.001 0 1 0-1.536-1.28l-4.3 5.159-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1.002 1.002 0 0 0 1.475-.067l5-6Z" fill-rule="evenodd">
+              </path>
+             </svg>
+             <div>
+              <strong>
+               Squid :
+              </strong>
+              <span x-text="created.squid">
+              </span>
+             </div>
+            </div>
+            <div class="flex items-center">
+             <svg class="mr-2 fill-green-500" fill="none" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg">
+              <path clip-rule="evenodd" d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11 11-4.925 11-11S18.075 1 12 1Zm4.768 9.14a1.001 1.001 0 1 0-1.536-1.28l-4.3 5.159-2.225-2.226a1 1 0 0 0-1.414 1.414l3 3a1.002 1.002 0 0 0 1.475-.067l5-6Z" fill-rule="evenodd">
+              </path>
+             </svg>
+             <div>
+              <strong>
+               Bandwidth :
+              </strong>
+              Unmetered
+             </div>
+            </div>
+           </div>
+           <br/>
+           <div class="field my-4">
+            <label class="field__label text-center text-style">
+             Payload
+            </label>
+            <textarea class="form-control mb-2 font-italic" id="https-payload" placeholder="Websocket Payload" readonly="" rows="3" style="font-size: 0.8rem; overflow: hidden;" x-text="created.data.payload_https"></textarea>
+           </div>
+           <button class="btn btn_sm btn_block btn_warning mt-4" onclick="copyToClipboard1()">
+            Copy Payload (SSL/TLS)
+           </button>
+           <div class="field my-4">
+            <textarea class="form-control mb-2 font-italic" id="http-payload" placeholder="Websocket Payload" readonly="" rows="3" style="font-size: 0.8rem; overflow: hidden;" x-text="created.data.payload_http"></textarea>
+           </div>
+           <button class="btn btn_sm btn_block btn_warning mt-4" onclick="copyToClipboard2()">
+            Copy Payload (HTTP)
+           </button>
+          </div>
+          <div class="flex justify-center mt-6">
+           <script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js">
+           </script>
+           <!-- wahyus -->
+           <ins class="adsbygoogle" data-ad-client="ca-pub-2683295470677090" data-ad-format="auto" data-ad-slot="2877006766" style="display:block;max-width:970px;width:100%;margin:0 auto;">
+           </ins>
+           <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+           </script>
+          </div>
+         </template>
+         <div class="bg-gray-200 p-4 rounded-b-lg text-right">
+          <button class="font-semibold text-primary-normal px-4 mr-3" type="button" x-on:click="hide">
+           Close
+          </button>
+          <a class="bg-primary-normal hover:bg-primary-dark font-semibold text-white h-11 py-2 px-4 inline-flex items-center justify-center shadow-sm rounded transition-colors duration-150" href="http://darkssh.com/server/SSH/413">
+           Create Again
+          </a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </template>
+    </form>
+   </div>
+  </div>
+  <div class="container max-w-screen-xl my-20 mx-auto">
+   <div class="grid md:grid-cols-2 gap-8 items-center">
+    <div class="text-gray-200">
+     <h2 class="text-3.5xl font-bold mb-5 wow animate__fadeInLeft" data-wow-duration="0.3s">
+      Connnect Everywhere Around
+      <br/>
+      The World
+     </h2>
+     <p class="text-xl wow animate__fadeInLeft" data-wow-delay="0.1s" data-wow-duration="0.3s">
+      You can change your connection location from around the world, because our servers available from many countries.
+     </p>
+    </div>
+    <div class="wow animate__zoomIn" data-wow-delay="0.2s" data-wow-duration="0.3s">
+     <img alt="illustration-world-map.png" class="max-w-full px-4" src="http://darkssh.com/images/illustration-world-map.png"/>
+    </div>
+   </div>
+  </div>
+  <div class="container max-w-screen-xl my-20 mx-auto overflow-hidden">
+   <div class="grid md:grid-cols-2 gap-8 items-center">
+    <div class="wow animate__zoomIn" data-wow-delay="0.1s" data-wow-duration="0.3s">
+     <img alt="illustration-world-map.png" class="max-w-full px-4" src="http://darkssh.com/images/illustration-puzzle.png"/>
+    </div>
+    <div class="text-gray-200">
+     <h2 class="text-3.5xl font-bold mb-5 wow animate__fadeInRight" data-wow-duration="0.3s">
+      Multiple Secure Solution Make
+      <br/>
+      More Strong Connection
+     </h2>
+     <p class="text-xl wow animate__fadeInRight" data-wow-delay="0.1s" data-wow-duration="0.3s">
+      Strong connection make your life on internet hard to decrypt. We provides multiple tunneling service.
+     </p>
+    </div>
+   </div>
+  </div>
+  <footer class="bg-footer pt-56 -mx-6 px-6">
+   <div class="container max-w-screen-xl mx-auto">
+    <div class="flex items-center md:flex-row flex-col gap-8 justify-between md:text-left">
+     <a class="self-center" href="http://darkssh.com">
+      <img alt="Logo" src="http://darkssh.com/images/1648565419_logo.svg"/>
+     </a>
+     <nav class="flex items-center gap-3">
+      <a href="https://fb.me/duwiwahyu" rel="noopener" target="_blank">
+       <svg aria-hidden="true" class="fill-gray-200 hover:fill-white" focusable="false" height="24" preserveaspectratio="xMidYMid meet" style="vertical-align: -0.143em;-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" viewbox="0 0 896 1792" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path d="M895 12v264H738q-86 0-116 36t-30 108v189h293l-39 296H592v759H286V905H31V609h255V391q0-186 104-288.5T667 0q147 0 228 12z">
+        </path>
+       </svg>
+      </a>
+      <a href="https://twitter.com/duwiwahyu" rel="noopener" target="_blank">
+       <svg aria-hidden="true" class="fill-gray-200 hover:fill-white" focusable="false" height="24" preserveaspectratio="xMidYMid meet" style="vertical-align: -0.143em;-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" viewbox="0 -256 1600 1792" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path d="M1588 152q-67 98-162 167q1 14 1 42q0 130-38 259.5T1273.5 869T1089 1079.5t-258 146t-323 54.5q-271 0-496-145q35 4 78 4q225 0 401-138q-105-2-188-64.5T189 777q33 5 61 5q43 0 85-11q-112-23-185.5-111.5T76 454v-4q68 38 146 41q-66-44-105-115T78 222q0-88 44-163q121 149 294.5 238.5T788 397q-8-38-8-74q0-134 94.5-228.5T1103 0q140 0 236 102q109-21 205-78q-37 115-142 178q93-10 186-50z">
+        </path>
+       </svg>
+      </a>
+      <a href="https://instagram.com/duwiwahyu" rel="noopener" target="_blank">
+       <svg aria-hidden="true" class="fill-gray-200 hover:fill-white" focusable="false" height="24" preserveaspectratio="xMidYMid meet" style="vertical-align: -0.143em;-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" viewbox="0 -128 1536 1792" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path d="M1024 768q0-106-75-181t-181-75t-181 75t-75 181t75 181t181 75t181-75t75-181zm138 0q0 164-115 279t-279 115t-279-115t-115-279t115-279t279-115t279 115t115 279zm108-410q0 38-27 65t-65 27t-65-27t-27-65t27-65t65-27t65 27t27 65zM768 138q-7 0-76.5-.5t-105.5 0t-96.5 3t-103 10T315 169q-50 20-88 58t-58 88q-11 29-18.5 71.5t-10 103t-3 96.5t0 105.5t.5 76.5t-.5 76.5t0 105.5t3 96.5t10 103T169 1221q20 50 58 88t88 58q29 11 71.5 18.5t103 10t96.5 3t105.5 0t76.5-.5t76.5.5t105.5 0t96.5-3t103-10t71.5-18.5q50-20 88-58t58-88q11-29 18.5-71.5t10-103t3-96.5t0-105.5t-.5-76.5t.5-76.5t0-105.5t-3-96.5t-10-103T1367 315q-20-50-58-88t-88-58q-29-11-71.5-18.5t-103-10t-96.5-3t-105.5 0t-76.5.5zm768 630q0 229-5 317q-10 208-124 322t-322 124q-88 5-317 5t-317-5q-208-10-322-124T5 1085q-5-88-5-317t5-317q10-208 124-322T451 5q88-5 317-5t317 5q208 10 322 124t124 322q5 88 5 317z">
+        </path>
+       </svg>
+      </a>
+      <a href="https://t.me/duwiwahyu" rel="noopener" target="_blank">
+       <svg aria-hidden="true" class="fill-gray-200 hover:fill-white" focusable="false" height="24" preserveaspectratio="xMidYMid meet" style="vertical-align: -0.143em;-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" viewbox="0 0 1792 1792" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path d="M1189 1307l147-693q9-44-10.5-63t-51.5-7L410 877q-29 11-39.5 25t-2.5 26.5t32 19.5l221 69l513-323q21-14 32-6q7 5-4 15l-415 375l-16 228q23 0 45-22l108-104l224 165q64 36 81-38zm603-411q0 182-71 348t-191 286t-286 191t-348 71t-348-71t-286-191t-191-286T0 896t71-348t191-286T548 71T896 0t348 71t286 191t191 286t71 348z">
+        </path>
+       </svg>
+      </a>
+     </nav>
+    </div>
+    <div class="text-center md:text-left py-8 mt-8 border-t border-white border-opacity-10 text-gray-200 flex md:flex-row flex-col items-center justify-between">
+     <p>
+      © Copyright 2024.
+      <strong>
+       <a href="http://darkssh.com">
+        DarkSSH
+       </a>
+      </strong>
+     </p>
+     <nav class="flex gap-4 flex-wrap justify-center mt-4 md:mt-0 md:justify-end">
+      <a href="http://darkssh.com/page/about">
+       About
+      </a>
+      <a href="http://darkssh.com/page/contact">
+       Contact Us
+      </a>
+      <a href="http://darkssh.com/page/disclaimer">
+       Disclaimer
+      </a>
+      <a href="http://darkssh.com/page/term-of-service">
+       Terms of Service
+      </a>
+     </nav>
+    </div>
+   </div>
+  </footer>
+  <script id="__bs_script__">
+   //<![CDATA[
+    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js'><\/script>".replace("HOST", location.hostname));
+//]]>
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+  </script>
+  <script src="https://cdn.jsdelivr.net/gh/jeromeetienne/jquery-qrcode@v1.0/jquery.qrcode.min.js">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.10/dist/clipboard.min.js">
+  </script>
+  <script>
+   function copyToClipboard1() {
+            /* Get the text area element */
+            var httpPayload = document.getElementById("https-payload");
+
+            /* Select the text inside the text area */
+            httpPayload.select();
+            httpPayload.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text to the clipboard */
+            document.execCommand("copy");
+
+            /* Alert the user that the text has been copied */
+            alert("HTTPS Payload copied to clipboard: ");
+        }
+
+        function copyToClipboard2() {
+            /* Get the text area element */
+            var httpPayload = document.getElementById("http-payload");
+
+            /* Select the text inside the text area */
+            httpPayload.select();
+            httpPayload.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text to the clipboard */
+            document.execCommand("copy");
+
+            /* Alert the user that the text has been copied */
+            alert("HTTP Payload copied to clipboard: ");
+        }
+
+        function copyToClipboard3() {
+            /* Get the text area element */
+            var httpPayload = document.getElementById("http-custom");
+
+            /* Select the text inside the text area */
+            httpPayload.select();
+            httpPayload.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text to the clipboard */
+            document.execCommand("copy");
+
+            /* Alert the user that the text has been copied */
+            alert("Success copied to clipboard: ");
+        }
+
+        function copyToClipboardtls() {
+            /* Get the text area element */
+            var httpPayload = document.getElementById("tls");
+
+            /* Select the text inside the text area */
+            httpPayload.select();
+            httpPayload.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text to the clipboard */
+            document.execCommand("copy");
+
+            /* Alert the user that the text has been copied */
+            alert("Success copied to clipboard ");
+        }
+
+        function copyToClipboardntls() {
+            /* Get the text area element */
+            var httpPayload = document.getElementById("ntls");
+
+            /* Select the text inside the text area */
+            httpPayload.select();
+            httpPayload.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text to the clipboard */
+            document.execCommand("copy");
+
+            /* Alert the user that the text has been copied */
+            alert("Success copied to clipboard ");
+        }
+
+        function copyToClipboardtlsx() {
+            /* Get the text area element */
+            var httpPayload = document.getElementById("tlsx");
+
+            /* Select the text inside the text area */
+            httpPayload.select();
+            httpPayload.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text to the clipboard */
+            document.execCommand("copy");
+
+            /* Alert the user that the text has been copied */
+            alert("Success copied to clipboard ");
+        }
+
+        function copyToClipboardntlsx() {
+            /* Get the text area element */
+            var httpPayload = document.getElementById("ntlsx");
+
+            /* Select the text inside the text area */
+            httpPayload.select();
+            httpPayload.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text to the clipboard */
+            document.execCommand("copy");
+
+            /* Alert the user that the text has been copied */
+            alert("Success copied to clipboard ");
+        }
+
+        function copyToClipboardgrpc() {
+            /* Get the text area element */
+            var httpPayload = document.getElementById("grpc");
+
+            /* Select the text inside the text area */
+            httpPayload.select();
+            httpPayload.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text to the clipboard */
+            document.execCommand("copy");
+
+            /* Alert the user that the text has been copied */
+            alert("Success copied to clipboard ");
+        }
+
+        function copyToClipboardpub() {
+            /* Get the text area element */
+            var httpPayload = document.getElementById("pubkey");
+
+            /* Select the text inside the text area */
+            httpPayload.select();
+            httpPayload.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text to the clipboard */
+            document.execCommand("copy");
+
+            /* Alert the user that the text has been copied */
+            alert("Success copied to clipboard ");
+        }
+
+        function copyToClipboardLink_TLS() {
+            /* Get the text area element */
+            var httpPayload = document.getElementById("Link_TLS");
+
+            /* Select the text inside the text area */
+            httpPayload.select();
+            httpPayload.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text to the clipboard */
+            document.execCommand("copy");
+
+            /* Alert the user that the text has been copied */
+            alert("Success copied to clipboard ");
+        }
+        function copyToClipboardLink_TLS_A() {
+            /* Get the text area element */
+            var httpPayload = document.getElementById("Link_TLS_A");
+
+            /* Select the text inside the text area */
+            httpPayload.select();
+            httpPayload.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text to the clipboard */
+            document.execCommand("copy");
+
+            /* Alert the user that the text has been copied */
+            alert("Success copied to clipboard ");
+        }
+        function copyToClipboardLink_TLS_B() {
+            /* Get the text area element */
+            var httpPayload = document.getElementById("Link_TLS_B");
+
+            /* Select the text inside the text area */
+            httpPayload.select();
+            httpPayload.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text to the clipboard */
+            document.execCommand("copy");
+
+            /* Alert the user that the text has been copied */
+            alert("Success copied to clipboard ");
+        }
+        function copyToClipboardLink_TLS_C() {
+            /* Get the text area element */
+            var httpPayload = document.getElementById("Link_TLS_C");
+
+            /* Select the text inside the text area */
+            httpPayload.select();
+            httpPayload.setSelectionRange(0, 99999); /* For mobile devices */
+
+            /* Copy the text to the clipboard */
+            document.execCommand("copy");
+
+            /* Alert the user that the text has been copied */
+            alert("Success copied to clipboard ");
+        }
+  </script>
+ </body>
+</html>

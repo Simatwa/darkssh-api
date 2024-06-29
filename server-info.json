@@ -1,0 +1,7 @@
+{
+    "username": "darkssh_smartwacahaja",
+    "password": "12441244",
+    "host": "a.us.servergo.pw",
+    "payload": "GET / HTTP/1.1[crlf]Host: us.servergo.pw[crlf]Connection: Upgrade[crlf]User-Agent: [ua][crlf]Upgrade: websocket[crlf][crlf]",
+    "port": 22
+}
