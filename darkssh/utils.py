@@ -34,6 +34,4 @@ def extract_csrf_token(html: str) -> str:
         s1 = re.search(r"\w{40}", s[0])
         if s1:
             return s1.group()
-    raise CsrfEXtractionError(
-        "Failed to extract CSRF token from the html content."
-    )
+    raise CsrfEXtractionError("Failed to extract CSRF token from the html content.")

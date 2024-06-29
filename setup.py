@@ -1,6 +1,6 @@
 from setuptools import setup
 
-INSTALL_REQUIRE = ["requests[socks]==2.31.0", "bs4==0.0.1"]
+INSTALL_REQUIRE = ["requests[socks]==2.31.0", "bs4==0.0.1", "pydantic==2.7.3"]
 
 cli_reqs = [
     "click==8.1.3",

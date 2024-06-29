@@ -6,36 +6,55 @@ from typing import Literal
 from darkssh.models import SSHModel
 
 headers = {
-    "Accept" : "application/json",
-    "Accept-Encoding" : "gzip, deflate",
-    "Accept-Language" : "en-US,en;q=0.5",
-    "Connection" : "keep-alive",
-    "Referer" : "http://darkssh.com/server/SSH/413",
-    "User-Agent" : "Mozilla/5.0 (X11; Linux x86_64; rv:126.0) Gecko/20100101 Firefox/126.0",
+    "Accept": "application/json",
+    "Accept-Encoding": "gzip, deflate",
+    "Accept-Language": "en-US,en;q=0.5",
+    "Connection": "keep-alive",
+    "Referer": "http://darkssh.com/server/SSH/413",
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:126.0) Gecko/20100101 Firefox/126.0",
 }
 
 country_codes_map = {
-    "Singapore" : 412,
-    "United States" : 413,
-    "Germany" : 414,
-    "United Kingdom" : 415,
-    "Netherlands" : 416,
-    "Australia" : 417,
-    "Canada" : 418,
-    "Indonesia" : 0,
-    "Japan" :474,
-    "Sweden" : 475,
-    "Italy" : 476,
+    "Singapore": 412,
+    "United States": 413,
+    "Germany": 414,
+    "United Kingdom": 415,
+    "Netherlands": 416,
+    "Australia": 417,
+    "Canada": 418,
+    "Indonesia": 0,
+    "Japan": 474,
+    "Sweden": 475,
+    "Italy": 476,
 }
+
+
 class SSH:
 
-    def __init__(self, country:Literal['Singapore', 'United States', 'Germany', 'United Kingdom', 'Netherlands', 'Australia', 'Canada', 'Indonesia', 'Japan', 'Sweden', 'Italy']="Singapore"):
+    def __init__(
+        self,
+        country: Literal[
+            "Singapore",
+            "United States",
+            "Germany",
+            "United Kingdom",
+            "Netherlands",
+            "Australia",
+            "Canada",
+            "Indonesia",
+            "Japan",
+            "Sweden",
+            "Italy",
+        ] = "Singapore",
+    ):
         """Constructor
 
         Args:
             country : Server location. Defaults to "Singapore".
         """
-        assert country in country_codes_map, f"Country '{country}' is not one of {tuple(country_codes_map.keys())}"
+        assert (
+            country in country_codes_map
+        ), f"Country '{country}' is not one of {tuple(country_codes_map.keys())}"
         self.url = url = f"http://darkssh.com/server/SSH/{country_codes_map[country]}"
         self.timeout = 10
         self.session = requests.Session()
@@ -65,10 +84,7 @@ class SSH:
         """
         assert os.path.isdir(dir), f"Directory '{dir}' does not exist!"
         image_url = self.captcha_url
-        save_to = os.path.join(
-            dir, 
-            image_url.split("?")[1] + ".png"
-            )
+        save_to = os.path.join(dir, image_url.split("?")[1] + ".png")
         resp = self.session.get(image_url)
         resp.raise_for_status()
         with open(save_to, "wb") as fp:
@@ -90,11 +106,7 @@ class SSH:
         Returns:
             SSHModel: Server info
         """
-        payload = {
-            "username": username,
-            "password": password,
-            "captcha": captcha
-        }
+        payload = {"username": username, "password": password, "captcha": captcha}
         self.session.headers.update(
             {
                 "X-CSRF-TOKEN": utils.extract_csrf_token(

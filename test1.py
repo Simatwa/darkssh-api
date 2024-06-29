@@ -33,5 +33,6 @@ data = {
 }
 
 
-with open("success.json", "w") as fh:
-    json.dump(data, fh, indent=4)
+from darkssh.models import SSHModel
+
+print(SSHModel(**data).model_dump_json(indent=4))
