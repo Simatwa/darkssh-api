@@ -72,7 +72,7 @@ def generate(output, username, password, location, timeout, indent, dir, summari
     if summarize:
         summarized_info = (
             f'AUTH : "{server_info.data.ip}:{server_info.data.op.split(',')[0]}'
-            f'@{server_info.data.username}:{server_info.data.password}\n\n"'
+            f'@{server_info.data.username}:{server_info.data.password}"\n'
             f'PAYLOAD : "{server_info.data.data.payload_http}"'
         )
         click.secho(
