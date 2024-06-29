@@ -1,7 +1,5 @@
-import json
-
-data = {
-    "success": True,
+{
+    "success": true,
     "data": {
         "level": "success",
         "ip": "a.us.servergo.pw",
@@ -25,13 +23,9 @@ data = {
                 "ns": "ns-us.servergo.pw",
                 "pubkey": "0c636786a0f668eea5e188959a9f350694bb2f4fc1ed4b8e2e690d26f217481a",
                 "domain": "sl.us.servergo.pw",
-                "port": "443, 80, 53, 5300",
+                "port": "443, 80, 53, 5300"
             },
-            "credits": "lionssh Dev",
-        },
-    },
+            "credits": "lionssh Dev"
+        }
+    }
 }
-
-
-with open("success.json", "w") as fh:
-    json.dump(data, fh, indent=4)

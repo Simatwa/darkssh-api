@@ -2,6 +2,8 @@ import os
 import requests
 import darkssh.utils as utils
 import darkssh.errors as errors
+from typing import Literal
+from darkssh.models import SSHModel
 
 headers = {
     "Accept" : "application/json",
@@ -12,13 +14,29 @@ headers = {
     "User-Agent" : "Mozilla/5.0 (X11; Linux x86_64; rv:126.0) Gecko/20100101 Firefox/126.0",
 }
 
-
+country_codes_map = {
+    "Singapore" : 412,
+    "United States" : 413,
+    "Germany" : 414,
+    "United Kingdom" : 415,
+    "Netherlands" : 416,
+    "Australia" : 417,
+    "Canada" : 418,
+    "Indonesia" : 0,
+    "Japan" :474,
+    "Sweden" : 475,
+    "Italy" : 476,
+}
 class SSH:
 
-    url = "http://darkssh.com/server/SSH/413"
+    def __init__(self, country:Literal['Singapore', 'United States', 'Germany', 'United Kingdom', 'Netherlands', 'Australia', 'Canada', 'Indonesia', 'Japan', 'Sweden', 'Italy']="Singapore"):
+        """Constructor
 
-    def __init__(self):
-        """Constructor"""
+        Args:
+            country : Server location. Defaults to "Singapore".
+        """
+        assert country in country_codes_map, f"Country '{country}' is not one of {tuple(country_codes_map.keys())}"
+        self.url = url = f"http://darkssh.com/server/SSH/{country_codes_map[country]}"
         self.timeout = 10
         self.session = requests.Session()
         self.session.headers = headers
@@ -58,7 +76,7 @@ class SSH:
 
         return save_to
 
-    def generate(self, username: str, password: str, captcha: str) -> dict:
+    def generate(self, username: str, password: str, captcha: str) -> SSHModel:
         """Generate ssh server and return credentials
 
         Args:
@@ -70,7 +88,7 @@ class SSH:
             errors.ServerCreationError: Upon server creation failure.
 
         Returns:
-            dict: Server info
+            SSHModel: Server info
         """
         payload = {
             "username": username,
@@ -88,7 +106,7 @@ class SSH:
         resp = self.session.post(self.url, data=payload, timeout=self.timeout)
 
         if resp.ok:
-            return resp.json()
+            return SSHModel(**resp.json())
 
         else:
             raise errors.ServerCreationError(

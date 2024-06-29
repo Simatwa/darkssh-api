@@ -1,9 +1,6 @@
 from setuptools import setup
 
-INSTALL_REQUIRE = [
-    "requests[socks]==2.31.0",
-    "bs4==0.0.1"
-]
+INSTALL_REQUIRE = ["requests[socks]==2.31.0", "bs4==0.0.1"]
 
 cli_reqs = [
     "click==8.1.3",
@@ -33,9 +30,7 @@ setup(
         "Documentation": "https://github.com/Simatwa/darkssh-api/blob/main/docs",
     },
     entry_points={
-        "console_scripts": [
-            "darkssh = darkssh.console:main"
-        ],
+        "console_scripts": ["darkssh = darkssh.console:main"],
     },
     install_requires=INSTALL_REQUIRE,
     extras_require=EXTRA_REQUIRE,
