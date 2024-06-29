@@ -2,6 +2,7 @@ import click
 from darkssh.main import country_codes_map, SSH
 import os
 
+
 @click.command()
 @click.argument("output", type=click.Path(resolve_path=True))
 @click.option(
@@ -81,7 +82,7 @@ def generate(output, username, password, location, timeout, indent, dir, summari
     else:
         click.secho(jsonified_server_info, fg="cyan")
     save_to = os.path.join(dir, output)
-    click.secho(f"Saving server info to '{save_to}'", fg='yellow')
+    click.secho(f"Saving server info to '{save_to}'", fg="yellow")
     with open(save_to, "w") as fh:
         fh.write(jsonified_server_info)
 

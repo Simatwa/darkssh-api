@@ -1,6 +1,6 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
-INSTALL_REQUIRE = ["requests[socks]==2.31.0", "bs4==0.0.1", "pydantic==2.7.3"]
+INSTALL_REQUIRE = ["requests==2.31.0", "bs4==0.0.1", "pydantic==2.7.3"]
 
 cli_reqs = [
     "click==8.1.3",
@@ -13,13 +13,14 @@ EXTRA_REQUIRE = {
 
 setup(
     name="darkssh-api",
+    # packages="darkssh",
+    packages=find_packages(""),
     version="0.0.1",
     license="MIT",
     author="Smartwa",
     maintainer="Smartwa",
     author_email="simatwacaleb@proton.me",
     description="Unofficial Python SDK/API fo Darkssh",
-    packages="darkssh",
     url="https://github.com/Simatwa/darkssh-api",
     project_urls={
         "Bug Report": "https://github.com/Simatwa/darkssh-api/issues/new",
