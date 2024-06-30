@@ -17,7 +17,7 @@ load_dotenv()
 
 bot_token = os.getenv("telegram-token")
 admin_id = int(os.getenv("admin-id", 0))
-request_timeout = int(os.getenv('timeout', 20))
+request_timeout = int(os.getenv("timeout", 20))
 cache = {
     admin_id: {
         "location": "United Kingdom",
@@ -154,10 +154,7 @@ def create_server(message: Message, captcha: str):
             ),
         )
     except ServerCreationError:
-        bot.reply_to(
-            message,
-            "Failed to create server!"
-        )
+        bot.reply_to(message, "Failed to create server!")
     except Exception as e:
         bot.reply_to(message, f"{get_exc(e)}")
 
@@ -165,8 +162,8 @@ def create_server(message: Message, captcha: str):
 @bot.message_handler(commands=["check"], is_admin=True)
 def check_configuration(message: Message):
     current_config = cache.get(message.from_user.id, {})
-    if current_config.get('ssh_instance'):
-        current_config.pop('ssh_instance')
+    if current_config.get("ssh_instance"):
+        current_config.pop("ssh_instance")
     bot.send_message(
         message.chat.id,
         f"```json\n{json.dumps(current_config, indent=4)}\n```",
@@ -193,6 +190,11 @@ def view_cache(message: Message):
 def echo_user_id(message: Message):
     """Show user his Telegram ID"""
     return bot.reply_to(message, message.from_user.id.__str__())
+
+
+@bot.message_handler(func=lambda msg: True)
+def unknown_action(message: Message):
+    return bot.reply_to(message, help_info)
 
 
 class IsAdminFilter(SimpleCustomFilter):
