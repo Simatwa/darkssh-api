@@ -1,6 +1,8 @@
 import telebot
 import os
 import json
+import random
+import string
 from telebot.custom_filters import SimpleCustomFilter
 from telebot.types import (
     Message,
@@ -46,6 +48,28 @@ help_info = (
 get_exc = lambda e: e.args[1] if e.args and len(e.args) > 1 else str(e)
 
 
+def random_string(k=16, alphanumeric=False) -> str:
+    """Generate random string
+
+    Args:
+        k (int, optional): Population. Defaults to 16.
+        alphanumeric (bool, optional): Include digits. Defaults to False.
+
+    Returns:
+        str: generated string
+    """
+    return "".join(
+        random.sample(
+            (
+                string.ascii_letters + string.digits
+                if alphanumeric
+                else string.ascii_letters
+            ),
+            k,
+        )
+    )
+
+
 def next_step_handler(func):
     """Decorator to pass argument to next_step_handler"""
 
@@ -65,7 +89,9 @@ def usage_info(message: Message):
 @next_step_handler
 def accept_username(message: Message, username: str):
     """Accept username"""
-    cache[message.from_user.id]["username"] = username
+    cache[message.from_user.id]["username"] = (
+        random_string(12) if username == "random" else username
+    )
     bot.reply_to(message, "New username set successfully.")
 
 
@@ -73,7 +99,9 @@ def accept_username(message: Message, username: str):
 @next_step_handler
 def accept_password(message: Message, password: str):
     """Accept password"""
-    cache[message.from_user.id]["password"] = password
+    cache[message.from_user.id]["password"] = (
+        random_string(12, True) if password == "random" else password
+    )
     bot.reply_to(message, "New password set successfully.")
 
 
@@ -181,6 +209,7 @@ def view_cache(message: Message):
         bot.send_message(
             message.chat.id,
             f"```json\n{cached_server_info.model_dump_json(indent=4)}\n```",
+            parse_mode="Markdown"
         )
     else:
         bot.reply_to(message, "{}")
