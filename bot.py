@@ -10,6 +10,7 @@ from telebot.types import (
 )
 from telebot.util import extract_arguments
 from darkssh.main import SSH, country_codes_map
+from darkssh.errors import ServerCreationError
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -149,6 +150,11 @@ def create_server(message: Message, captcha: str):
                 f"Expiry : {server_info.data.exp}\n"
                 f"Location : {user_inputs['location']}\n"
             ),
+        )
+    except ServerCreationError:
+        bot.reply_to(
+            message,
+            "Failed to create server!"
         )
     except Exception as e:
         bot.reply_to(message, f"{get_exc(e)}")
