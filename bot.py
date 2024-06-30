@@ -146,7 +146,7 @@ def create_server(message: Message, captcha: str):
             (
                 f"Username : {server_info.data.username}\n"
                 f"Password : {server_info.data.password}\n"
-                f"Host : {server_info.data.ip}"
+                f"Host : {server_info.data.ip}\n"
                 f"SSH Port : {server_info.data.op}\n"
                 f"HTTP Payload : {server_info.data.data.payload_http}\n"
                 f"Expiry : {server_info.data.exp}\n"
