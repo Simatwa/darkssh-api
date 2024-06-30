@@ -192,7 +192,7 @@ def echo_user_id(message: Message):
     return bot.reply_to(message, message.from_user.id.__str__())
 
 
-@bot.message_handler(func=lambda msg: True)
+@bot.message_handler(func=lambda msg: True, is_admin=True)
 def unknown_action(message: Message):
     return bot.reply_to(message, help_info)
 
