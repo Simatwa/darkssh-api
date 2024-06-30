@@ -37,6 +37,7 @@ help_info = (
     "/location - Set server location\n"
     "/captcha - Get captcha image\n"
     "/generate - Generate ssh server.\n"
+    "/cached - View recently created server\n"
     "/check - View current configuration"
 )
 
@@ -82,7 +83,7 @@ def set_server_location(message: Message, location: str):
         cache[message.from_user.id]["location"] = location
         return bot.reply_to(message, "Location set successfully!")
 
-    markup = InlineKeyboardMarkup(row_width=3)
+    markup = InlineKeyboardMarkup(row_width=2)
     for location in country_codes_map.keys():
         markup.add(
             InlineKeyboardButton(
@@ -136,11 +137,13 @@ def create_server(message: Message, captcha: str):
             password=user_inputs["password"],
             captcha=captcha,
         )
+        cache[message.from_user.id]["server_cache"] = server_info
         bot.send_message(
             message.chat.id,
             (
                 f"Username : {server_info.data.username}\n"
                 f"Password : {server_info.data.password}\n"
+                f"Host : {server_info.data.ip}"
                 f"SSH Port : {server_info.data.op}\n"
                 f"HTTP Payload : {server_info.data.data.payload_http}\n"
                 f"Expiry : {server_info.data.exp}\n"
@@ -159,6 +162,21 @@ def check_configuration(message: Message):
         f"```json\n{json.dumps(current_config, indent=4)}\n```",
         parse_mode="Markdown",
     )
+
+
+@bot.message_handler(commands=["cached"], is_admin=True)
+def view_cache(message: Message):
+    """Last server generated info"""
+    cached_server_info = cache[message.from_user.id].get(
+        "server_cache",
+    )
+    if cached_server_info:
+        bot.send_message(
+            message.chat.id,
+            f"```json\n{cached_server_info.model_dump_json(indent=4)}\n```",
+        )
+    else:
+        bot.reply_to(message, "{}")
 
 
 @bot.message_handler(commands=["myid"])
