@@ -157,6 +157,8 @@ def create_server(message: Message, captcha: str):
 @bot.message_handler(commands=["check"], is_admin=True)
 def check_configuration(message: Message):
     current_config = cache.get(message.from_user.id, {})
+    if current_config.get('ssh_instance'):
+        current_config.pop('ssh_instance')
     bot.send_message(
         message.chat.id,
         f"```json\n{json.dumps(current_config, indent=4)}\n```",
