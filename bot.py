@@ -17,6 +17,7 @@ load_dotenv()
 
 bot_token = os.getenv("telegram-token")
 admin_id = int(os.getenv("admin-id", 0))
+request_timeout = int(os.getenv('timeout', 20))
 cache = {
     admin_id: {
         "location": "United Kingdom",
@@ -107,6 +108,7 @@ def message_handler(message: Message):
     try:
         user = cache[message.from_user.id]
         ssh_instance = SSH(user["location"])
+        ssh_instance.timeout = request_timeout
         cache[message.from_user.id]["ssh_instance"] = ssh_instance
         bot.send_chat_action(message.chat.id, "upload_photo")
         path_to_captcha_image = ssh_instance.download_captcha_image()
