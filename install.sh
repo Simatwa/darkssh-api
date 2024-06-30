@@ -5,7 +5,7 @@ if [[ -d "$DIR" ]]; then
    rm $DIR -rf
 fi
 
-git clone https://Simatwa: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@github.com/Simatwa/$DIR.git
+git clone https://Simatwa:$GITHUB_TOKEN@github.com/Simatwa/$DIR.git
 cp .env $DIR
 cd $DIR
 
