@@ -42,7 +42,8 @@ help_info = (
     "/captcha - Get captcha image\n"
     "/generate - Generate ssh server.\n"
     "/cached - View recently created server\n"
-    "/check - View current configuration"
+    "/check - View current configuration\n\n"
+    "Made with ❤️ by @AlphaBei from Kenya 🇰🇪"
 )
 
 get_exc = lambda e: e.args[1] if e.args and len(e.args) > 1 else str(e)
@@ -79,10 +80,29 @@ def next_step_handler(func):
     return decorator
 
 
+def inline_delete_markup(message: Message) -> InlineKeyboardMarkup:
+    """Make delete markup
+
+    Args:
+        message (types.Message): Message obj
+
+    Returns:
+        InlineKeyboardMarkup: Delete button markup.
+    """
+    markup = InlineKeyboardMarkup(row_width=1)
+    button = InlineKeyboardButton(
+        text="🗑️", callback_data=f"del:{message.chat.id}:{message.id}"
+    )
+    markup.add(button)
+    return markup
+
+
 @bot.message_handler(commands=["start"], is_admin=True)
 def usage_info(message: Message):
     """Help info"""
-    return bot.reply_to(message, help_info)
+    markup = inline_delete_markup(message)
+    markup.add(InlineKeyboardButton("Contact Developer", "https://t.me/AlphaBei"))
+    return bot.reply_to(message, help_info, reply_markup=markup)
 
 
 @bot.message_handler(commands=["username"], is_admin=True)
@@ -92,7 +112,11 @@ def accept_username(message: Message, username: str):
     cache[message.from_user.id]["username"] = (
         random_string(12) if username == "random" else username
     )
-    bot.reply_to(message, "New username set successfully.")
+    bot.reply_to(
+        message,
+        "New username set successfully.",
+        reply_markup=inline_delete_markup(message),
+    )
 
 
 @bot.message_handler(commands=["password"], is_admin=True)
@@ -102,7 +126,11 @@ def accept_password(message: Message, password: str):
     cache[message.from_user.id]["password"] = (
         random_string(12, True) if password == "random" else password
     )
-    bot.reply_to(message, "New password set successfully.")
+    bot.reply_to(
+        message,
+        "New password set successfully.",
+        reply_markup=inline_delete_markup(message),
+    )
 
 
 @bot.message_handler(commands=["location"], is_admin=True)
@@ -111,23 +139,39 @@ def set_server_location(message: Message, location: str):
     """Take passphrase"""
     if location in country_codes_map:
         cache[message.from_user.id]["location"] = location
-        return bot.reply_to(message, "Location set successfully!")
+        return bot.reply_to(
+            message,
+            "Location set successfully!",
+            reply_markup=inline_delete_markup(message),
+        )
 
     markup = InlineKeyboardMarkup(row_width=2)
-    for location in country_codes_map.keys():
-        markup.add(
-            InlineKeyboardButton(
-                location, callback_data=f"{message.from_user.id}:{location}"
-            )
-        )
+    location_buttons = map(
+        lambda location: InlineKeyboardButton(
+            location, callback_data=f"loc:{message.from_user.id}:{location}"
+        ),
+        country_codes_map.keys(),
+    )
+    markup.add(*location_buttons)
+    markup.add(
+        InlineKeyboardButton(
+            text="🗑️", callback_data=f"del:{message.chat.id}:{message.id}"
+        ),
+        row_width=1,
+    )
+
     bot.reply_to(message, "Select Server location", reply_markup=markup)
 
 
-@bot.callback_query_handler(func=lambda call: True)
+@bot.callback_query_handler(func=lambda call: call.data.startswith("loc:"))
 def callback_query(call: CallbackQuery):
-    user, location = call.data.split(":")
+    _, user, location = call.data.split(":")
     cache[int(user)]["location"] = location
-    bot.reply_to(call.message, "Location updated successfully!")
+    bot.reply_to(
+        call.message,
+        "Location updated successfully!",
+        reply_markup=inline_delete_markup(call.message),
+    )
 
 
 @bot.message_handler(commands=["captcha"], is_admin=True)
@@ -144,10 +188,11 @@ def message_handler(message: Message):
             message.chat.id,
             open(path_to_captcha_image, "rb"),
             "Enter captcha value shown here in /generate.",
+            reply_markup=inline_delete_markup(message),
         )
         bot.register_next_step_handler(msg, create_server)
     except Exception as e:
-        bot.reply_to(message, get_exc(e))
+        bot.reply_to(message, get_exc(e), reply_markup=inline_delete_markup(message))
     finally:
         try:
             os.remove(path_to_captcha_image)
@@ -180,11 +225,18 @@ def create_server(message: Message, captcha: str):
                 f"Expiry : {server_info.data.exp}\n"
                 f"Location : {user_inputs['location']}\n"
             ),
+            reply_markup=inline_delete_markup(message),
         )
     except ServerCreationError:
-        bot.reply_to(message, "Failed to create server!")
+        bot.reply_to(
+            message,
+            "Failed to create server!",
+            reply_markup=inline_delete_markup(message),
+        )
     except Exception as e:
-        bot.reply_to(message, f"{get_exc(e)}")
+        bot.reply_to(
+            message, f"{get_exc(e)}", reply_markup=inline_delete_markup(message)
+        )
 
 
 @bot.message_handler(commands=["check"], is_admin=True)
@@ -196,6 +248,7 @@ def check_configuration(message: Message):
         message.chat.id,
         f"```json\n{json.dumps(current_config, indent=4)}\n```",
         parse_mode="Markdown",
+        reply_markup=inline_delete_markup(message),
     )
 
 
@@ -209,21 +262,41 @@ def view_cache(message: Message):
         bot.send_message(
             message.chat.id,
             f"```json\n{cached_server_info.model_dump_json(indent=4)}\n```",
-            parse_mode="Markdown"
+            parse_mode="Markdown",
+            reply_markup=inline_delete_markup(message),
         )
     else:
-        bot.reply_to(message, "{}")
+        bot.reply_to(message, "{}", reply_markup=inline_delete_markup(message))
 
 
 @bot.message_handler(commands=["myid"])
 def echo_user_id(message: Message):
     """Show user his Telegram ID"""
-    return bot.reply_to(message, message.from_user.id.__str__())
+    return bot.reply_to(
+        message,
+        message.from_user.id.__str__(),
+        reply_markup=inline_delete_markup(message),
+    )
 
 
 @bot.message_handler(func=lambda msg: True, is_admin=True)
 def unknown_action(message: Message):
-    return bot.reply_to(message, help_info)
+    return bot.reply_to(message, help_info, reply_markup=inline_delete_markup(message))
+
+
+@bot.callback_query_handler(func=lambda call: call.data.startswith("del:"))
+def delete_button_callback_handler(call: CallbackQuery):
+    """Deletes a sent message"""
+    _, chat_id, msg_id = call.data.split(":")
+    try:
+        bot.delete_message(chat_id, msg_id)
+        bot.delete_message(call.message.chat.id, call.message.id)
+    except Exception as e:
+        try:
+            bot.delete_message(call.message.chat.id, call.message.id)
+        except:
+            pass
+        pass
 
 
 class IsAdminFilter(SimpleCustomFilter):
