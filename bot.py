@@ -209,7 +209,7 @@ def message_handler(message: Message):
             pass
 
 
-@bot.message_handler(func=lambda msg: "/generate" in msg.text, is_admin=True)
+@bot.message_handler(func=lambda msg: "/generate" in msg.text.split(' '), is_admin=True)
 # @next_step_handler
 def create_server(message: Message):
     splitted_text = message.text.split(" ")
