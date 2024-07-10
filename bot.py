@@ -25,6 +25,7 @@ cache = {
         "location": "United Kingdom",
         "username": "smarytwahajaka",
         "password": "12441244",
+        "previous_username": "",
     }
 }
 
@@ -75,7 +76,8 @@ def next_step_handler(func):
     """Decorator to pass argument to next_step_handler"""
 
     def decorator(message: Message):
-        return func(message, extract_arguments(message.text))
+        if len(message.text) > 1:
+            return func(message, extract_arguments(message.text))
 
     return decorator
 
@@ -184,11 +186,18 @@ def message_handler(message: Message):
         cache[message.from_user.id]["ssh_instance"] = ssh_instance
         bot.send_chat_action(message.chat.id, "upload_photo")
         path_to_captcha_image = ssh_instance.download_captcha_image()
+        markup = inline_delete_markup(message)
+        markup.add(
+            telebot.types.InlineKeyboardButton(
+                text="Generate",
+                switch_inline_query_current_chat="/generate ",
+            )
+        )
         msg = bot.send_photo(
             message.chat.id,
             open(path_to_captcha_image, "rb"),
             "Enter captcha value shown here in /generate.",
-            reply_markup=inline_delete_markup(message),
+            reply_markup=markup,
         )
         bot.register_next_step_handler(msg, create_server)
     except Exception as e:
@@ -200,12 +209,22 @@ def message_handler(message: Message):
             pass
 
 
-@bot.message_handler(commands=["generate"], is_admin=True)
-@next_step_handler
-def create_server(message: Message, captcha: str):
-    if not captcha:
-        return bot.reply_to(message, "Captcha value is required! - /captcha")
+@bot.message_handler(func=lambda msg: "/generate" in msg.text, is_admin=True)
+# @next_step_handler
+def create_server(message: Message):
+    splitted_text = message.text.split(" ")
+    if len(splitted_text) > 1:
+        captcha = splitted_text[len(splitted_text) - 1]
+    else:
+        markup = telebot.types.ForceReply(selective=True)
+        return bot.reply_to(
+            message, "Captcha value is required! - /captcha", reply_markup=markup
+        )
+
     user_inputs = cache[message.from_user.id]
+    if user_inputs["username"] == user_inputs["previous_username"]:
+        user_inputs["username"] = random_string()
+
     user_ssh_instance: SSH = user_inputs["ssh_instance"]
     try:
         server_info = user_ssh_instance.generate(
@@ -241,9 +260,10 @@ def create_server(message: Message, captcha: str):
 
 @bot.message_handler(commands=["check"], is_admin=True)
 def check_configuration(message: Message):
-    current_config = cache.get(message.from_user.id, {})
-    if current_config.get("ssh_instance"):
-        current_config.pop("ssh_instance")
+    current_config = cache.get(message.from_user.id, {}).copy()
+    for key, value in current_config.items():
+        current_config[key] = str(value)
+
     bot.send_message(
         message.chat.id,
         f"```json\n{json.dumps(current_config, indent=4)}\n```",
@@ -311,5 +331,6 @@ class IsAdminFilter(SimpleCustomFilter):
 bot.add_custom_filter(IsAdminFilter())
 
 if __name__ == "__main__":
+    cache[admin_id]["username"] = random_string()
     print("Infinity polling ...")
     bot.infinity_polling()
