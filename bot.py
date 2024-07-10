@@ -208,6 +208,18 @@ def message_handler(message: Message):
         except:
             pass
 
+@bot.message_handler(commands=["check"], is_admin=True)
+def check_configuration(message: Message):
+    current_config = cache.get(message.from_user.id, {}).copy()
+    for key, value in current_config.items():
+        current_config[key] = str(value)
+
+    bot.send_message(
+        message.chat.id,
+        f"```json\n{json.dumps(current_config, indent=4)}\n```",
+        parse_mode="Markdown",
+        reply_markup=inline_delete_markup(message),
+    )
 
 @bot.message_handler(func=lambda msg: "/generate" in msg.text.split(' '), is_admin=True)
 # @next_step_handler
@@ -256,20 +268,6 @@ def create_server(message: Message):
         bot.reply_to(
             message, f"{get_exc(e)}", reply_markup=inline_delete_markup(message)
         )
-
-
-@bot.message_handler(commands=["check"], is_admin=True)
-def check_configuration(message: Message):
-    current_config = cache.get(message.from_user.id, {}).copy()
-    for key, value in current_config.items():
-        current_config[key] = str(value)
-
-    bot.send_message(
-        message.chat.id,
-        f"```json\n{json.dumps(current_config, indent=4)}\n```",
-        parse_mode="Markdown",
-        reply_markup=inline_delete_markup(message),
-    )
 
 
 @bot.message_handler(commands=["cached"], is_admin=True)
