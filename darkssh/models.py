@@ -43,7 +43,7 @@ class Data1(BaseModel):
     payload_https: str
     username: str
     password: str
-    ip: IPvAnyAddress
+    ip: str
     host: str
     exp: datetime
     slowdns: SlowDNS
